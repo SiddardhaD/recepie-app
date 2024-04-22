@@ -14,11 +14,19 @@ ARG DEV=false
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
+    apt-get update && \
+    apt-get install -y postgresql-client && \
+    apt-get install -y build-essential libpq-dev && \
+    # apk add --update --no-cache postgresql-client && \
+    # apk add --update --no-cache --virtual .tmp-build-deps \
+        # build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
+    # apk del .tmp-build-deps && \
+    # apt-get autoremove -y && \
     adduser \
         --disabled-password \
         --no-create-home \
