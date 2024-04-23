@@ -1,7 +1,7 @@
 '''
 Django commamnds to cwait for Database to be aviable
 '''
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand  # noqa
 from psycopg2 import OperationalError as Psycopg2OpError
 from django.db.utils import OperationalError
 import time
