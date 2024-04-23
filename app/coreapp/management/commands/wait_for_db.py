@@ -3,11 +3,8 @@ Django commamnds to cwait for Database to be aviable
 '''
 from django.core.management.base import BaseCommand
 from psycopg2 import OperationalError as Psycopg2OpError
-
 from django.db.utils import OperationalError
 import time
-
-
 class Command(BaseCommand):
     def handle(self,*args,**options):
         self.stdout.write("waiting for database...!")
